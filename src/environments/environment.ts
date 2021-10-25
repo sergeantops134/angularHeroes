@@ -6,8 +6,8 @@ import {Environment} from "./interfaces";
 
 export const environment: Environment = {
   production: false,
-  apiToken: '',
-  apiUrl: '',
+  apiToken: '2972337033095344',
+  apiUrl: 'https://superheroapi.com/api/',
 };
 
 /*
