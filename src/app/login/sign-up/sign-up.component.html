@@ -11,8 +11,10 @@
       class="validation"
       *ngIf="form.get('username').touched && form.get('email').invalid"
     >
-      <small *ngIf="form.get('username').errors.required">
-        Email can`t be empty
+      <small *ngIf="form.get('username').errors?.required">
+        Username can`t be empty
+      </small><small *ngIf="form.get('username').errors?.invalidUsername">
+        Invalid username
       </small>
     </div>
 
@@ -50,12 +52,8 @@
       <small *ngIf="form.get('password').errors.required">
         Password can`t be empty
       </small>
-      <small *ngIf="form.get('password').errors.minlength">
-        Password must be longer then
-        {{ form.get('password').errors.minlength.requiredLength - 1 }}
-        symbols. There are only
-        {{ form.get('password').errors.minlength.actualLength }}
-        now.
+      <small *ngIf="form.get('password').errors.invalidPass">
+        Invalid password. (5+ symbols, [aA4!]
       </small>
     </div>
   </div>

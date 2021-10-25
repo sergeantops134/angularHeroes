@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
+import {CustomValidators} from "../../shared/custom.validators";
 
 @Component({
   selector: 'app-sign-in',
@@ -20,8 +21,8 @@ export class SignInComponent implements OnInit {
   public ngOnInit(): void {
 
     this.form = new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+        email: new FormControl('', [Validators.required, Validators.email, CustomValidators.customEmail]),
+        password: new FormControl('', [Validators.required, CustomValidators.customPassword]),
     });
 
 
