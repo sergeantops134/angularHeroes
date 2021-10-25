@@ -3,14 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
+import { LoginLayoutComponent } from './login/shared/components/login-layout/login-layout.component';
+import { SignInComponent } from './login/sign-in/sign-in.component';
+import { SignUpComponent } from './login/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainLayoutComponent,
+    LoginLayoutComponent,
+    SignInComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,16 @@
+<nav class="navbar bg-primary">
+  <h1>Log in to app</h1>
+
+  <ul>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/login', 'signin']">Sign in</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/login', 'signup']">Sign up</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
