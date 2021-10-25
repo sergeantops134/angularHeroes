@@ -9,24 +9,25 @@ import {CustomValidators} from "../../shared/custom.validators";
   styleUrls: ['./sign-in.component.scss'],
  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent {
 
-  public form: FormGroup;
+  public form: FormGroup =new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email, CustomValidators.checkEmail]),
+    password: new FormControl('', [Validators.required, CustomValidators.checkPassword]),
+  });
   public submitted: boolean = false;
+  public get isPasswordInvalid(): boolean{
+    return this.form.get('password').touched && this.form.get('password').invalid;
+  }
+  public get isEmailInvalid(): boolean {
+    return this.form.get('email').touched && this.form.get('email').invalid;
+  }
+
 
   constructor(
     private _route: ActivatedRoute,
   ) { }
 
-  public ngOnInit(): void {
-
-    this.form = new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email, CustomValidators.customEmail]),
-        password: new FormControl('', [Validators.required, CustomValidators.customPassword]),
-    });
-
-
-  }
 
   public submit(): void {
     if (this.form.invalid) return;

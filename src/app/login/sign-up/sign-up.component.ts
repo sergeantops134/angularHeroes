@@ -7,21 +7,25 @@ import {CustomValidators} from "../../shared/custom.validators";
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
 
-  public form: FormGroup;
+  public form: FormGroup =new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email, CustomValidators.checkEmail]),
+    username: new FormControl('', [Validators.required, Validators.minLength(8), CustomValidators.checkUsername]),
+    password: new FormControl('', [Validators.required, CustomValidators.checkPassword]),
+  });
   public submitted: boolean = false;
+  public get isPasswordInvalid(): boolean{
+    return this.form.get('password').touched && this.form.get('password').invalid;
+  }
+  public get isEmailInvalid(): boolean {
+    return this.form.get('email').touched && this.form.get('email').invalid;
+  }
+  public get isUsernameInvalid(): boolean {
+    return this.form.get('username').touched && this.form.get('username').invalid;
+  }
 
   constructor() { }
-
-  ngOnInit(): void {
-
-    this.form = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email, CustomValidators.customEmail]),
-      username: new FormControl('', [Validators.required, Validators.minLength(8), CustomValidators.customUsername]),
-      password: new FormControl('', [Validators.required, CustomValidators.customPassword]),
-    });
-  }
 
   submit() {
     if (this.form.invalid) return;

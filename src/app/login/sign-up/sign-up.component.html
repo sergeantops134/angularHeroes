@@ -3,13 +3,13 @@
 
   <div
     class="form-control"
-    [ngClass]="{invalid: form.get('username').touched && form.get('username').invalid}"
+    [class.invalid]="isUsernameInvalid"
   >
     <label for="username">Username:</label>
     <input type="text" id="username" formControlName="username">
     <div
       class="validation"
-      *ngIf="form.get('username').touched && form.get('email').invalid"
+      *ngIf="isUsernameInvalid"
     >
       <small *ngIf="form.get('username').errors?.required">
         Username can`t be empty
@@ -22,13 +22,13 @@
 
   <div
     class="form-control"
-    [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
+    [class.invalid]="isEmailInvalid"
   >
     <label for="email">Email:</label>
     <input type="email" id="email" formControlName="email">
     <div
       class="validation"
-      *ngIf="form.get('email').touched && form.get('email').invalid"
+      *ngIf="isEmailInvalid"
     >
       <small *ngIf="form.get('email').errors.required">
         Email can`t be empty
@@ -41,13 +41,13 @@
 
   <div
     class="form-control"
-    [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid}"
+    [class.invalid]="isPasswordInvalid"
   >
     <label for="password">Password:</label>
     <input type="password" id="password" formControlName="password">
     <div
       class="validation"
-      *ngIf="form.get('password').touched && form.get('password').invalid"
+      *ngIf="isPasswordInvalid"
     >
       <small *ngIf="form.get('password').errors.required">
         Password can`t be empty
