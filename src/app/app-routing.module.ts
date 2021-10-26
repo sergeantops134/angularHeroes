@@ -4,10 +4,11 @@ import { MainLayoutComponent } from "./shared/components/main-layout/main-layout
 import { LoginLayoutComponent } from "./login/shared/components/login-layout/login-layout.component";
 import { SignInComponent } from "./login/sign-in/sign-in.component";
 import { SignUpComponent } from "./login/sign-up/sign-up.component";
+import { AuthGuard } from "./shared/auth.guard";
 
 const routes: Routes = [
   {
-    path: '', component: MainLayoutComponent, children: [],
+    path: '', component: MainLayoutComponent, children: [], canActivate: [AuthGuard]
   },
   {
     path: 'login', component: LoginLayoutComponent, children: [
