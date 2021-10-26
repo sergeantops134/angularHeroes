@@ -24,7 +24,6 @@ export class SignInComponent implements OnInit {
     return this.form.get('email').touched && this.form.get('email').invalid;
   }
 
-  public submitted: boolean = false;
   public isLoginInvalid: boolean = false;
   public sessionExpired: boolean = false;
 
@@ -34,6 +33,10 @@ export class SignInComponent implements OnInit {
   ) {  }
 
   public ngOnInit(): void {
+    this.checkSessionState();
+  }
+
+  private checkSessionState() {
     this._route.queryParams.subscribe((params: Params) => {
       this.sessionExpired = !!params['sessionExpired'];
     });
@@ -42,19 +45,10 @@ export class SignInComponent implements OnInit {
 
   public submit(): void {
     if (this.form.invalid) return;
+    this.sessionExpired = false;
 
-    this.submitted = true;
-
-    if (!this._authService.tryToLogin(this.form.value.email, this.form.value.password)) {
-      this.isLoginInvalid = true;
-      this.submitted = false;
-      this.sessionExpired = false;
-      return;
-    }
+    this.isLoginInvalid = !this._authService.tryToLogin(this.form.value.email, this.form.value.password);
 
     this.form.reset();
-    this.isLoginInvalid = false;
-    this.sessionExpired = false;
-    this.submitted = false;
   }
 }

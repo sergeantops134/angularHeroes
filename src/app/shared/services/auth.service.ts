@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from "../interfaces";
+import {Token, User} from "../interfaces";
 import { Router } from "@angular/router";
+import {NAVIGATION_PATH} from "../enums";
 
 @Injectable({
   providedIn: 'root'
@@ -34,20 +35,21 @@ export class AuthService {
 
     this.currentUser = JSON.parse(localStorage.getItem(user.email));
 
-    const token = {
+    const token: Token = {
       value: '1488',
-      expiresDate: (new Date().getTime() + 3600 * 1000).toString(),
+      expiresDate: new Date().getTime() + 3600 * 1000,
     }
 
     sessionStorage.setItem(user.email, JSON.stringify(token));
     sessionStorage.setItem('currentUser', user.email);
 
-    this._router.navigate(['/']);
+    this._router.navigate([NAVIGATION_PATH.main]);
   }
 
   public logout(): void {
       sessionStorage.clear();
       this.currentUser = null;
+    this._router.navigate([NAVIGATION_PATH.signin]);
   }
 
   public createAccount(user: User): void {
@@ -63,11 +65,10 @@ export class AuthService {
 
     const loggingUser = JSON.parse(loggingUserJSON);
 
-    if (loggingUser.password === password) {
-      this.login(loggingUser);
-      return true;
-    } else {
-      return false;
+    if (loggingUser.password !== password) {
+      return;
     }
+    this.login(loggingUser);
+    return true;
   }
 }

@@ -28,7 +28,6 @@ export class SignUpComponent {
     return this.form.get('username').touched && this.form.get('username').invalid;
   }
 
-  public submitted: boolean = false;
 
   constructor(
     private _authService: AuthService,
@@ -37,18 +36,7 @@ export class SignUpComponent {
   submit() {
     if (this.form.invalid) return;
 
-    this.submitted = true;
-
-    const user: User = {
-      username: this.form.value.username,
-      email: this.form.value.email,
-      password: this.form.value.password,
-    }
-
-    this._authService.createAccount(user);
+    this._authService.createAccount(this.form.value);
     this.form.reset();
-
-    this.submitted = false;
-
   }
 }
