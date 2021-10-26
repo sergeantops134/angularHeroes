@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {NAVIGATION_PATH} from "../../../../shared/enums";
 
 @Component({
   selector: 'app-login-layout',
@@ -8,7 +9,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 })
 export class LoginLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor() {  }
 
   public ngOnInit(): void {
   }

@@ -36,6 +36,9 @@
       <small *ngIf="form.get('email').errors.email">
         Invalid email
       </small>
+      <small *ngIf="form.get('email').errors.emailTaken">
+        Email taken
+      </small>
     </div>
   </div>
 
@@ -61,7 +64,7 @@
   <button
     type="submit"
     class="btn btn-primary"
-    [disabled]="form.invalid || submitted"
+    [disabled]="form.invalid"
   >Sign up</button>
 
 </form>

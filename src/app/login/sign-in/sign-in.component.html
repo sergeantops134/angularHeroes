@@ -1,6 +1,13 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
   <h2>Sign in for free</h2>
 
+  <div class="card bg-danger" *ngIf="isLoginInvalid">
+    <p>Invalid login data</p>
+  </div>
+  <div class="card bg-danger" *ngIf="sessionExpired">
+    <p>Your current session has expired. Please login
+      again to continue using this app!</p>
+  </div>
   <div
     class="form-control"
     [class.invalid]="isEmailInvalid"
@@ -42,7 +49,7 @@
   <button
     type="submit"
     class="btn btn-primary"
-    [disabled]="form.invalid || submitted"
+    [disabled]="form.invalid"
   >Sign in</button>
 
 </form>
