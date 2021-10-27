@@ -1,0 +1,10 @@
+<div class="flex-power-card" [class.unavailable]="!powerup.usesLeft">
+  <img [src]="powerupService.POWERUPS[powerup.id].imageUrl">
+  <div class="description">
+    <h2>{{ powerupService.POWERUPS[powerup.id].title }}</h2>
+    <p>{{ powerupService.POWERUPS[powerup.id].stat }}: +10</p>
+  </div>
+  <div class="controls">
+    <p>Uses left: {{ powerup.usesLeft }}</p>
+  </div>
+</div>

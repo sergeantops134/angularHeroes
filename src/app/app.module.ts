@@ -16,6 +16,7 @@ import { UserInfoPageComponent } from './user-info-page/user-info-page.component
 import { UserHeroesListComponent } from './shared/components/user-heroes-list/user-heroes-list.component';
 import { BattlesHistoryComponent } from './shared/components/battles-history/battles-history.component';
 import { PowerupsComponent } from './shared/components/powerups/powerups.component';
+import { PowerupCardComponent } from './shared/components/powerup-card/powerup-card.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { PowerupsComponent } from './shared/components/powerups/powerups.compone
     UserHeroesListComponent,
     BattlesHistoryComponent,
     PowerupsComponent,
+    PowerupCardComponent,
   ],
   imports: [
     BrowserModule,
