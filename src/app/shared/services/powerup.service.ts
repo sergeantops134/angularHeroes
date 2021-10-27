@@ -56,11 +56,11 @@ export class PowerupService {
 
   constructor() { }
 
-  public getAvailable() {
+  public getAvailable(): UserPowerup[] {
     return this._usesPowerUps.filter(powerup => powerup.usesLeft !== 0);
   }
 
-  public getUnavailable() {
+  public getUnavailable(): UserPowerup[] {
     return this._usesPowerUps.filter(powerup => powerup.usesLeft === 0);
   }
 
