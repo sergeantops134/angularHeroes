@@ -1,1 +1,6 @@
-<p>powerups works!</p>
+<div class="container">
+  <div class="flex-powers">
+      <app-powerup-card *ngFor="let powerup of powerupService.getAvailable()" [powerup]="powerup"></app-powerup-card>
+      <app-powerup-card *ngFor="let powerup of powerupService.getUnavailable()" [powerup]="powerup"></app-powerup-card>
+  </div>
+</div>

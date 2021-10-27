@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { PowerupService } from "../../services/powerup.service";
 
 @Component({
   selector: 'app-powerups',
@@ -8,7 +9,9 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class PowerupsComponent {
 
-  constructor() { }
+  constructor(
+    public powerupService: PowerupService,
+  ) { }
 
 
 

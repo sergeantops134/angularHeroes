@@ -29,3 +29,15 @@ export interface Battle {
   enemy: string,
   result: string,
 }
+
+export interface Powerup {
+  id: string,
+  title: string,
+  stat: string,
+  imageUrl: string
+}
+
+export interface UserPowerup {
+  id: string,
+  usesLeft: number,
+}
