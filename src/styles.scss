@@ -11,7 +11,7 @@
   --danger-color: #dc3545;
   --success-color: #28a745;
 }
- 
+
 small {
   display: block;
 }
@@ -28,6 +28,7 @@ body {
   line-height: 1.6;
   background-color: #fff;
   color: #333;
+  min-height: 100vh;
 }
 
 a {
@@ -44,14 +45,12 @@ ul {
   list-style: none;
 }
 
-img {
-  width: 100%;
-}
+
 
 .container {
   max-width: 1100px;
   margin: auto;
-  overflow: hidden;
+  overflow: visible;
   padding: 0 2rem;
 }
 
@@ -88,6 +87,10 @@ img {
 
   &-content {
     margin-bottom: .5rem;
+  }
+
+  .cursor {
+    cursor: pointer;
   }
 }
 
@@ -176,6 +179,8 @@ img {
 .alert-dark {
   background: var(--dark-color);
   color: #fff;
+  padding: 3px;
+  margin: 3px;
 }
 
 .btn-danger,
@@ -220,6 +225,7 @@ img {
   display: block;
   color: #888;
   margin-bottom: .8rem;
+
 
   &.invalid {
     color: var(--primary-color);
@@ -299,5 +305,46 @@ table th {
     &:hover {
       color: var(--light-color);
     }
+  }
+}
+
+.flex-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  margin-bottom: .8rem;
+
+  input {
+    flex: 0.5;
+  }
+
+  .alphabet-selector {
+    position: relative;
+    border: 2px solid red;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 30px;
+    max-height: 30px;
+    cursor: pointer;
+    margin-left: 4px;
+  }
+
+  &.invalid {
+    color: var(--primary-color);
+    input {
+      border-color: var(--primary-color);
+    }
+  }
+
+  .validation {
+    color: var(--primary-color);
   }
 }

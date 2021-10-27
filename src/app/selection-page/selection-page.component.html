@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="flex-search">
+      <div
+        class="alphabet-selector"
+      ><span (click)="toggleAlphabet()">{{ currentLetter }}</span>
+        <app-alphabet *ngIf="isAlphabetVisible" (buttonPressed)="searchByAlphabetSelector($event)"></app-alphabet>
+      </div>
+      <form [formGroup]="form">
+      <input type="text" class="search" formControlName="searchInput" (keyup)="searchByEnter($event)">
+      </form>
+    <img src="https://s.pfst.net/2018.04/629504967210596a222e9b508f667bd03d0cd9877369_b.jpg" (click)="searchByClick()">
+  </div>
+  <div class="card" *ngIf="recentSearches.length">
+    <p class="bg-dark cursor" *ngFor="let search of recentSearches" (click)="searchByRecent(search)">{{ search }}</p>
+  </div>
+  <div class="card" *ngIf="heroService.heroes?.length; else empty">
+    <app-search-result *ngFor="let hero of heroService.heroes" [hero]="hero"></app-search-result>
+  </div>
+
+  <ng-template #empty><p>No valid heroes</p></ng-template>
+
+</div>

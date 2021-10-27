@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { CustomValidators } from "../../shared/custom.validators";
 import { AuthService } from "../../shared/services/auth.service";
-import { User } from "../../shared/interfaces";
 
 @Component({
   selector: 'app-sign-up',
@@ -12,11 +11,13 @@ import { User } from "../../shared/interfaces";
 })
 export class SignUpComponent {
 
-  public form: FormGroup =new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email, CustomValidators.checkEmail, CustomValidators.isEmailUnique]),
-    username: new FormControl('', [Validators.required, Validators.minLength(8), CustomValidators.checkUsername]),
-    password: new FormControl('', [Validators.required, CustomValidators.checkPassword]),
+  public form: FormGroup = this._fb.group({
+    email: ['', [Validators.required, Validators.email, CustomValidators.checkEmail, CustomValidators.isEmailUnique]],
+    username: ['', [Validators.required, Validators.minLength(8), CustomValidators.checkUsername]],
+    password: ['', [Validators.required, CustomValidators.checkPassword]],
   });
+
+
 
   public get isPasswordInvalid(): boolean{
     return this.form.get('password').touched && this.form.get('password').invalid;
@@ -31,10 +32,13 @@ export class SignUpComponent {
 
   constructor(
     private _authService: AuthService,
+    private _fb: FormBuilder,
   ) { }
 
   submit() {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      return;
+    }
 
     this._authService.createAccount(this.form.value);
     this.form.reset();
