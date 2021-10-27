@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {ChangeDetectorRef, Injectable} from '@angular/core';
 import { Hero } from "../interfaces";
 import { ApiService } from "./api.service";
 import {Observable} from "rxjs";
+import {finalize} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -18,35 +19,33 @@ export class HeroService {
     private _apiService: ApiService,
   ) { }
 
-  public loadHeroes(query: string): Observable<void> {
-    return new Observable<void>( (subscriber) => {
+  public loadHeroes(query: string, cd: ChangeDetectorRef): void {
+
       this._apiService.getHeroes(query)
+        .pipe(finalize(() => cd.markForCheck()))
         .subscribe(heroes => {
           this.heroes = heroes;
-          subscriber.next();
-        }, () => {
-          subscriber.next();
         });
-    });
+
 
   }
 
   public isHeroSelected(id: string): boolean {
-    let isSelected = false;
-    this.selectedHeroes.forEach(hero => {
-      if (hero.id === id) isSelected = true;
-    });
-    return isSelected;
+    return this.selectedHeroes.some(hero => hero.id === id);
   }
 
   public selectHero(hero: Hero): void {
-    if (this.isHeroSelected(hero.id)) return;
+    if (this.isHeroSelected(hero.id)) {
+      return;
+    }
 
     this.selectedHeroes.push(hero);
   }
 
   public unselectHero(hero: Hero): void {
-    if (!this.isHeroSelected(hero.id)) return;
+    if (!this.isHeroSelected(hero.id)) {
+      return;
+    }
 
     this.selectedHeroes = this.selectedHeroes.filter(selectedHero => selectedHero.id !== hero.id);
   }

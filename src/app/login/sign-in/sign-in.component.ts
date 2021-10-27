@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { ActivatedRoute, Params } from "@angular/router";
 import { CustomValidators } from "../../shared/custom.validators";
 import { AuthService } from "../../shared/services/auth.service";
@@ -11,11 +11,11 @@ import { AuthService } from "../../shared/services/auth.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent implements OnInit {
-
-  public form: FormGroup =new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email, CustomValidators.checkEmail]),
-    password: new FormControl('', [Validators.required]),
+  public form: FormGroup = this._fb.group({
+    email: ['', [Validators.required, Validators.email, CustomValidators.checkEmail]],
+    password: ['', [Validators.required]],
   });
+
 
   public get isPasswordInvalid(): boolean{
     return this.form.get('password').touched && this.form.get('password').invalid;
@@ -29,7 +29,8 @@ export class SignInComponent implements OnInit {
 
   constructor(
    private _authService: AuthService,
-   private _route: ActivatedRoute
+   private _route: ActivatedRoute,
+   private _fb: FormBuilder
   ) {  }
 
   public ngOnInit(): void {
@@ -44,7 +45,9 @@ export class SignInComponent implements OnInit {
 
 
   public submit(): void {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      return;
+    }
     this.sessionExpired = false;
 
     this.isLoginInvalid = !this._authService.tryToLogin(this.form.value.email, this.form.value.password);

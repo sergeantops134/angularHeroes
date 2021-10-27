@@ -16,7 +16,7 @@ import {HeroService} from "../../services/hero.service";
   styleUrls: ['./search-result.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent {
 
   @Input() public hero: Hero;
   @ViewChild('select') button: ElementRef;
@@ -25,9 +25,6 @@ export class SearchResultComponent implements OnInit {
     public heroService: HeroService,
     private _cd: ChangeDetectorRef
   ) { }
-
-  ngOnInit(): void {
-  }
 
   public selectHero(): void {
     if (this.heroService.isHeroSelected(this.hero.id)) {

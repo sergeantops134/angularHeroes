@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {HeroService} from "../shared/services/hero.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "../shared/custom.validators";
 
 @Component({
@@ -9,11 +9,14 @@ import {CustomValidators} from "../shared/custom.validators";
   styleUrls: ['./selection-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectionPageComponent implements OnInit {
+export class SelectionPageComponent {
 
-  public form: FormGroup = new FormGroup({
-    searchInput: new FormControl('', [Validators.required, CustomValidators.checkSearch])
-  });
+  public form: FormGroup = this._fb.group(
+    { searchInput: ['', [Validators.required, CustomValidators.checkSearch]],
+       },
+    );
+
+
   public isAlphabetVisible: boolean = false;
   public recentSearches: string[] = sessionStorage.getItem('searches')?.split(',') || [];
   public currentLetter: string = 'a';
@@ -21,25 +24,23 @@ export class SelectionPageComponent implements OnInit {
   constructor(
     public heroService: HeroService,
     private _cd: ChangeDetectorRef,
+    private _fb: FormBuilder
   ) { }
-
-  ngOnInit(): void {
-  }
 
   private search(): void {
     this.addRecentSearch(this.form.value.searchInput)
-    if (this.form.invalid) return;
-    this.heroService.loadHeroes(this.form.value.searchInput)
-      .subscribe(() => {
-        this._cd.markForCheck();
-      }, () => {
-        this._cd.markForCheck();
-      });
 
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.heroService.loadHeroes(this.form.value.searchInput, this._cd);
   }
 
   public searchByEnter(event: KeyboardEvent) {
-    if (event.code !== 'Enter') return;
+    if (event.code !== 'Enter') {
+      return;
+    }
     this.search();
 
   }
@@ -61,7 +62,9 @@ export class SelectionPageComponent implements OnInit {
   }
 
   public addRecentSearch(query): void {
-    if (this.recentSearches.includes(query)) return;
+    if (this.recentSearches.includes(query)) {
+      return;
+    }
 
     this.recentSearches.unshift(query);
 
