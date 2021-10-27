@@ -8,3 +8,8 @@ export enum NAVIGATION_PATH {
     battles = '/info/battles',
     powerups = '/info/powerups',
 }
+
+export enum DIRECTION {
+    up = 1,
+    down = -1,
+}

@@ -1,0 +1,23 @@
+td,
+tr,
+table {
+
+  thead {
+    tr,
+    td {
+      border: 3px solid black;
+
+    }
+  }
+  border: 2px solid gray;
+  text-align: center;
+}
+
+.flex-table {
+  display: flex;
+  justify-content: space-between;
+  img {
+    width: 30px;
+    cursor: pointer;
+  }
+}
