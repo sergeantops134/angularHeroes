@@ -29,9 +29,8 @@ export class BattleService {
     private authService: AuthService,
   ) { }
 
-  public sort(selector: string, direction: number , cd: ChangeDetectorRef): void {
+  public sort(selector: string, direction: number): void {
     this.battlesHistory.sort((prev, next) => direction * (next[selector] > prev[selector] ? -1 : 1));
-    cd.markForCheck();
   }
 
 
