@@ -12,6 +12,10 @@ import { SelectionPageComponent } from './selection-page/selection-page.componen
 import { SearchResultComponent } from './shared/components/search-result/search-result.component';
 import { HttpClientModule } from "@angular/common/http";
 import { AlphabetComponent } from './shared/components/alphabet/alphabet.component';
+import { UserInfoPageComponent } from './user-info-page/user-info-page.component';
+import { UserHeroesListComponent } from './shared/components/user-heroes-list/user-heroes-list.component';
+import { BattlesHistoryComponent } from './shared/components/battles-history/battles-history.component';
+import { PowerupsComponent } from './shared/components/powerups/powerups.component';
 
 
 @NgModule({
@@ -24,6 +28,10 @@ import { AlphabetComponent } from './shared/components/alphabet/alphabet.compone
     SelectionPageComponent,
     SearchResultComponent,
     AlphabetComponent,
+    UserInfoPageComponent,
+    UserHeroesListComponent,
+    BattlesHistoryComponent,
+    PowerupsComponent,
   ],
   imports: [
     BrowserModule,

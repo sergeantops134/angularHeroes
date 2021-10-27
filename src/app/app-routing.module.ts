@@ -6,12 +6,21 @@ import { SignInComponent } from "./login/sign-in/sign-in.component";
 import { SignUpComponent } from "./login/sign-up/sign-up.component";
 import { AuthGuard } from "./shared/auth.guard";
 import { SelectionPageComponent } from "./selection-page/selection-page.component";
+import {UserInfoPageComponent} from "./user-info-page/user-info-page.component";
+import {UserHeroesListComponent} from "./shared/components/user-heroes-list/user-heroes-list.component";
+import {BattlesHistoryComponent} from "./shared/components/battles-history/battles-history.component";
+import {PowerupsComponent} from "./shared/components/powerups/powerups.component";
 
 const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, canActivate: [AuthGuard], children: [
-      {path: '', redirectTo: '/select', pathMatch: "full"},
+      {path: '', redirectTo: '/select', pathMatch: 'full'},
       {path: 'select', component: SelectionPageComponent},
+      {path: 'info', component: UserInfoPageComponent, children: [
+          {path: 'list', component: UserHeroesListComponent},
+          {path: 'battles', component: BattlesHistoryComponent},
+          {path: 'powerups', component: PowerupsComponent},
+        ]},
     ]
   },
   {
