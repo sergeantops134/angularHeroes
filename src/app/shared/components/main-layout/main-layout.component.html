@@ -1,8 +1,8 @@
 <nav class="navbar bg-primary">
-  <h1>Angular Superheroes</h1>
+  <h1 routerLink="/select">Angular Superheroes</h1>
   <ul>
     <li>
-      <a>{{ this.authService.currentUser.username }}</a>
+      <a routerLink="/info/list">{{ this.authService.currentUser.username }}</a>
     </li>
     <li>
       <a (click)="logout($event)">Log out</a>
