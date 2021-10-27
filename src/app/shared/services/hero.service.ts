@@ -30,6 +30,7 @@ export class HeroService {
 
   }
 
+
   public isHeroSelected(id: string): boolean {
     return this.selectedHeroes.some(hero => hero.id === id);
   }

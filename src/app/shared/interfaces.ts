@@ -22,3 +22,10 @@ export interface Hero {
     combat: number | string
   }
 }
+
+export interface Battle {
+  date: Date,
+  hero: string,
+  enemy: string,
+  result: string,
+}
