@@ -23,6 +23,9 @@ export class CustomValidators {
     return localStorage.getItem(control.value) ? {emailTaken: true} : null;
   }
 
+  public static checkSearch(control: FormControl): ValidatorResult {
+    return control.value?.match(/([a-zA-Z][a-zA-Z ]+[a-zA-Z]|[a-zA-Z]+)/g)?.toString() === control.value ? null : {invalidSearch: true};
+  }
 
 }
 

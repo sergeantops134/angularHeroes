@@ -1,0 +1,21 @@
+:host {
+  position: absolute;
+  top: 30px;
+  left: -40px;
+  width: 300px;
+  height: fit-content;
+  border-radius: 10px;
+  border: 2px solid black;
+  background: white;
+}
+
+.alphabet-button {
+  display: inline-block;
+  border: 2px solid red;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  margin: 5px;
+  cursor: pointer;
+}
