@@ -11,6 +11,6 @@
   </div>
   <div class="controls">
     <button class="btn btn-primary" #select (click)="selectHero()">{{ heroService.isHeroSelected(hero.id) ? 'Unselect' : 'Select' }}</button>
-    <button class="btn btn-primary">View</button>
+    <button class="btn btn-primary" (click)="openHeroInfoPage()">View</button>
   </div>
 </div>

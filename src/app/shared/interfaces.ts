@@ -41,3 +41,28 @@ export interface UserPowerup {
   id: string,
   usesLeft: number,
 }
+
+export interface SingleHero extends Hero {
+  biography: {
+    'full-name': string,
+    'alter-egos': string,
+    'place-of-birth': string,
+    'first-appearance': string,
+    alignment: string
+  },
+  'appearance': {
+    gender: string,
+    race: string,
+    'eye-color': string,
+    'hair-color': string
+  },
+}
+
+export interface Bonuses{
+  intelligence: boolean,
+  strength: boolean,
+  speed: boolean,
+  durability: boolean,
+  power: boolean,
+  combat: boolean
+}

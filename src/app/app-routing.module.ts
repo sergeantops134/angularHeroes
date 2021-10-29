@@ -10,6 +10,9 @@ import { UserInfoPageComponent } from "./user-info-page/user-info-page.component
 import { UserHeroesListComponent } from "./shared/components/user-heroes-list/user-heroes-list.component";
 import { BattlesHistoryComponent } from "./shared/components/battles-history/battles-history.component";
 import { PowerupsComponent } from "./shared/components/powerups/powerups.component";
+import { HeroInfoPageComponent } from "./hero-info-page/hero-info-page.component";
+import { BattlePageComponent } from "./battle-page/battle-page.component";
+import {BattleGuard} from "./shared/battle.guard";
 
 const routes: Routes = [
   {
@@ -21,6 +24,8 @@ const routes: Routes = [
           {path: 'battles', component: BattlesHistoryComponent},
           {path: 'powerups', component: PowerupsComponent},
         ]},
+      {path: 'hero', component: HeroInfoPageComponent},
+      {path: 'battle', component: BattlePageComponent, canActivate: [BattleGuard]}
     ]
   },
   {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Powerup, UserPowerup } from "../interfaces";
+import { Bonuses, Powerup, UserPowerup } from "../interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -45,14 +45,23 @@ export class PowerupService {
     },
   ];
 
-  private _usesPowerUps: UserPowerup[] = [
-    {id: '0', usesLeft: 1},
-    {id: '1', usesLeft: 2},
-    {id: '2', usesLeft: 0},
+  public _usesPowerUps: UserPowerup[] = [
+    {id: '0', usesLeft: 5},
+    {id: '1', usesLeft: 5},
+    {id: '2', usesLeft: 5},
     {id: '3', usesLeft: 5},
-    {id: '4', usesLeft: 0},
-    {id: '5', usesLeft: 3},
+    {id: '4', usesLeft: 5},
+    {id: '5', usesLeft: 5},
   ]
+
+  public bonuses: Bonuses =  {
+    intelligence: false,
+    power: false,
+    durability: false,
+    speed: false,
+    strength: false,
+    combat: false
+  }
 
   constructor() { }
 
@@ -63,5 +72,16 @@ export class PowerupService {
   public getUnavailable(): UserPowerup[] {
     return this._usesPowerUps.filter(powerup => powerup.usesLeft === 0);
   }
+
+  public toggleBonus(selector: string): void {
+    this.bonuses[selector] = !this.bonuses[selector];
+  }
+
+  public decreasePowerup(stat: string): void {
+    const decreasedId: number = this.POWERUPS.findIndex(powerup => powerup.stat === stat);
+
+    this._usesPowerUps[decreasedId].usesLeft -= 1;
+  }
+
 
 }

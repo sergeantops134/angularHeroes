@@ -1,5 +1,8 @@
 <nav class="navbar bg-primary">
   <h1 routerLink="/select">Angular Superheroes</h1>
+
+  <h2 routerLink="/battle">FIGHT!!!</h2>
+
   <ul>
     <li>
       <a routerLink="/info/list">{{ this.authService.currentUser.username }}</a>
@@ -13,3 +16,6 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+
+
+

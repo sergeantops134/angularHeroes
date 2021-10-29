@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Hero } from "../interfaces";
+import { Hero, SingleHero } from "../interfaces";
 import { environment } from "../../../environments/environment";
 import { map } from "rxjs/operators";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Expression, isNull} from "@angular/compiler/src/output/output_ast";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root',
@@ -27,4 +26,10 @@ export class ApiService {
     return !Object.values(hero.powerstats).some(stat => stat === 'null');
   }
 
+  public getSingleHero<T>(id: string): Observable<T> {
+    return this._http.get<T>(`${environment.apiUrl}${environment.apiToken}/${id}`)
+      .pipe(
+        map(response => response as T),
+      );
+  }
 }

@@ -1,0 +1,45 @@
+<div class="flex-battle-general">
+  <div class="hero">
+      <img [src]="heroService.lastSelectedHero.image.url">
+      <p>{{ heroService.lastSelectedHero.name }}</p>
+      <hr>
+      <p
+        *ngFor="let key of statKeys"
+        [class.picked]="powerupService.bonuses[key]"
+      >{{ key | titlecase }}: {{ +heroService.lastSelectedHero.powerstats[key] + (powerupService.bonuses[key] ? 10 : 0) }}</p>
+  </div>
+
+  <div class="powerups">
+    <div class="buttons">
+      <h3>{{ authService.currentUser.username }}</h3>
+      <button
+        class="btn btn-primary"
+        (click)="conductBattle()"
+      >Fight!</button>
+      <h3>Enemy</h3>
+    </div>
+    <div class="bonuses">
+        <p
+          *ngFor="let powerup of powerupService.getAvailable()"
+          (click)="powerupService.toggleBonus(powerupService.POWERUPS[powerup.id].stat)"
+          [class.picked]="powerupService.bonuses[powerupService.POWERUPS[powerup.id].stat]"
+        >{{ powerupService.POWERUPS[powerup.id].title }}</p>
+    </div>
+  </div>
+
+  <div class="enemy">
+    <div *ngIf="(battleService.enemy | async) as enemy">
+      <img [src]="enemy.image.url">
+      <p>{{ enemy.name }}</p>
+      <hr>
+      <p>Intelligence: {{ enemy.powerstats.intelligence }}</p>
+      <p>Strength: {{ enemy.powerstats.strength }}</p>
+      <p>Speed: {{ enemy.powerstats.speed }}</p>
+      <p>Durability: {{ enemy.powerstats.durability }}</p>
+      <p>Power: {{ enemy.powerstats.power }}</p>
+      <p>Combat: {{ enemy.powerstats.combat }}</p>
+    </div>
+  </div>
+</div>
+
+<app-modal *ngIf="showModal" [message]="message" (onClose)="hideModal()" [button]="isBattleFinished"></app-modal>
