@@ -1,0 +1,50 @@
+.flex-battle-general {
+  display: flex;
+  width: 100%;
+  height: 900px;
+  justify-content: space-between;
+}
+
+.hero,
+.enemy {
+  img {
+    width: 330px;
+    max-height: 50%;
+  }
+
+
+}
+
+.powerups {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+
+  .buttons {
+    height: 50%;
+    border: 3px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bonuses {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      cursor: pointer;
+    };
+  }
+
+}
+
+.picked {
+  font-weight: bold;
+  color: red;
+}

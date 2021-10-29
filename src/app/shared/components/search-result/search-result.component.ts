@@ -2,13 +2,11 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef,
   Input,
-  OnInit,
-  ViewChild
 } from '@angular/core';
 import {Hero} from "../../interfaces";
 import {HeroService} from "../../services/hero.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search-result',
@@ -19,11 +17,11 @@ import {HeroService} from "../../services/hero.service";
 export class SearchResultComponent {
 
   @Input() public hero: Hero;
-  @ViewChild('select') button: ElementRef;
 
   constructor(
     public heroService: HeroService,
-    private _cd: ChangeDetectorRef
+    private _cd: ChangeDetectorRef,
+    private _router: Router
   ) { }
 
   public selectHero(): void {
@@ -33,9 +31,16 @@ export class SearchResultComponent {
       this._cd.markForCheck();
       return;
     }
-    console.log(this.heroService.selectedHeroes);
 
     this.heroService.selectHero(this.hero);
     this._cd.markForCheck();
+  }
+
+  public openHeroInfoPage(): void {
+    this._router.navigate(['hero'], {
+      queryParams: {
+        id: this.hero.id,
+      }
+    });
   }
 }

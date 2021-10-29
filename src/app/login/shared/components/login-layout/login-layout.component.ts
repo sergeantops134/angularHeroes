@@ -7,11 +7,6 @@ import {NAVIGATION_PATH} from "../../../../shared/enums";
   styleUrls: ['./login-layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginLayoutComponent implements OnInit {
-
-  constructor() {  }
-
-  public ngOnInit(): void {
-  }
+export class LoginLayoutComponent {
 
 }

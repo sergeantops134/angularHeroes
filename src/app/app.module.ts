@@ -17,6 +17,10 @@ import { UserHeroesListComponent } from './shared/components/user-heroes-list/us
 import { BattlesHistoryComponent } from './shared/components/battles-history/battles-history.component';
 import { PowerupsComponent } from './shared/components/powerups/powerups.component';
 import { PowerupCardComponent } from './shared/components/powerup-card/powerup-card.component';
+import { HeroInfoPageComponent } from './hero-info-page/hero-info-page.component';
+import {ActivatedRouteSnapshot, RouterModule} from "@angular/router";
+import { BattlePageComponent } from './battle-page/battle-page.component';
+import { ModalComponent } from './shared/components/modal/modal.component';
 
 
 @NgModule({
@@ -34,13 +38,16 @@ import { PowerupCardComponent } from './shared/components/powerup-card/powerup-c
     BattlesHistoryComponent,
     PowerupsComponent,
     PowerupCardComponent,
+    HeroInfoPageComponent,
+    BattlePageComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

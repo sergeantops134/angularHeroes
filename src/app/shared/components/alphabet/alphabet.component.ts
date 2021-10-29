@@ -1,19 +1,14 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-alphabet',
   templateUrl: './alphabet.component.html',
   styleUrls: ['./alphabet.component.scss']
 })
-export class AlphabetComponent implements OnInit {
+export class AlphabetComponent {
 
-  public ALPHABET = 'abcdefghijklmnopqrstuvxyz';
+  public readonly ALPHABET = 'abcdefghijklmnopqrstuvxyz';
   @Output() buttonPressed: EventEmitter<string> = new EventEmitter<string>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public onClick(letter: string): void {
     this.buttonPressed.emit(letter);

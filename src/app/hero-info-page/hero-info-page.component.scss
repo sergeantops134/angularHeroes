@@ -1,0 +1,12 @@
+.flex-horizontal {
+  display: flex;
+  img{
+    flex: 0.5;
+    margin-right: 10px;
+  }
+  .flex-vertical {
+    flex: 0.5;
+    flex-direction: column;
+  }
+
+}
